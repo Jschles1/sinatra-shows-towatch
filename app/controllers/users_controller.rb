@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       erb :'users/create_user'
     else
       flash[:message] = "You are already logged in. Redirecting to your list of shows."
-      redirect to '/users/:slug'
+      redirect to '/shows'
     end
   end
 
