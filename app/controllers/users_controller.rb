@@ -14,4 +14,17 @@ class UsersController < ApplicationController
     end
   end
 
+  post '/signup' do
+    if params[:username] == "" || params[:password] == ""
+      flash[:message] = "Not all required fields were given. Please try again."
+      redirect to '/signup'
+    else
+      @user = User.new(:username => params[:username], :password => params[:password])
+      @user.save
+      session[:user_id] = @user.id
+      flash[:message] = "Thanks for signing up!"
+      redirect to '/shows'
+    end
+  end
+
 end
