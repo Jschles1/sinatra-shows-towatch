@@ -36,4 +36,19 @@ class UsersController < ApplicationController
     end
   end
 
+  post '/login' do
+    @user = User.find_by(:username => params[:username])
+    if params[:username] == "" || params[:password] == ""
+      flash[:message] = "Either the username and/or the password wasn't provided. Please try again."
+      redirect to '/login'
+    elsif @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
+      flash[:message] = "Welcome, #{@user.username}."
+      redirect to '/shows'
+    else
+      flash[:message] = "Log in failed. Please try again."
+      redirect to '/login'
+    end
+  end
+
 end
