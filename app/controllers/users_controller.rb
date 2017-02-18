@@ -27,4 +27,13 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/login' do
+    if !logged_in?
+      erb :'users/login'
+    else
+      flash[:message] = "You are already logged in. Redirecting to your list of shows."
+      redirect to '/shows'
+    end
+  end
+
 end
