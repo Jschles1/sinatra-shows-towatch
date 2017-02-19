@@ -41,4 +41,19 @@ class ShowsController < ApplicationController
     end
   end
 
+  get '/shows/:id/edit' do
+    if logged_in?
+      @show = Show.find_by_id(params[:id])
+      if @show.user_id = current_user.id
+        erb :'/shows/edit_show'
+      else
+        flash[:message] = "You don't have permission to perform this action."
+        redirect to '/shows'
+      end
+    else
+      flash[:message] = "You must log in to access this page."
+      redirect to '/login'
+    end
+  end
+
 end
