@@ -30,4 +30,15 @@ class ShowsController < ApplicationController
     end
   end
 
+  post '/shows' do
+    if params[:name] == "" || params[:network] == "" || params[:showtime] == ""
+      flash[:message] = "You left the content field blank. Please try again."
+      redirect to '/shows/new'
+    else
+      @show = current_user.shows.create(:name => params[:name], :network => params[:network], :showtime => params[:showtime])
+      @show.save
+      redirect to "/shows/#{@show.id}"
+    end
+  end
+
 end
