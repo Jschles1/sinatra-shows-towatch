@@ -68,4 +68,21 @@ class ShowsController < ApplicationController
     end
   end
 
+  delete '/shows/:id/delete' do
+    if logged_in?
+      @show = Show.find_by_id(params[:id])
+      if @show.user_id == current_user.id
+        @show.delete
+        flash[:message] = "Tweet deleted."
+        redirect '/shows'
+      else
+        flash[:message] = "You don't have permission to perform this action."
+        redirect '/shows'
+      end
+    else
+      flash[:message] = "You are currently not logged in."
+      redirect '/login'
+    end
+  end
+
 end
