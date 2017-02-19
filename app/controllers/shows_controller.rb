@@ -56,4 +56,16 @@ class ShowsController < ApplicationController
     end
   end
 
+  patch '/shows/:id' do
+    @show = Show.find_by_id(params[:id])
+    if params[:name] == "" || params[:network] == "" || params[:showtime] == ""
+      flash[:message] = "You left the content field blank. Please try again."
+      redirect "/shows/#{@show.id}/edit"
+    else
+      @show.update(:name => params[:name], :network => params[:network], :showtime => params[:showtime])
+      @show.save
+      redirect to "/shows/#{@show.id}"
+    end
+  end
+
 end
