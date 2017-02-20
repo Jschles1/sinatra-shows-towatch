@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20170217200927) do
   create_table "shows", force: :cascade do |t|
     t.string  "name"
     t.string  "network"
+    t.string  "weekday"
     t.string  "showtime"
     t.integer "user_id"
   end
