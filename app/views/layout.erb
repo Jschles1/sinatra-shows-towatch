@@ -19,6 +19,12 @@
                 <a href="/login" class="btn btn-default" role="button">Log In</a>
               <% end %>
             </div>
+            <div class="navbar-right">
+              <% if logged_in? %>
+                <a href="/shows/shows" class="btn btn-default" role="button">My Shows</a>
+                <a href="/logout" class="btn btn-default" role="button">Log Out</a>
+              <% end %>
+            </div>
           </div>
 
             <%= yield %>
