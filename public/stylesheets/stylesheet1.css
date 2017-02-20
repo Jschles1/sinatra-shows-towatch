@@ -22,9 +22,11 @@ section {
 }
 
 .signup-login {
-  text-align: left;
+  /*text-align: left;*/
 }
 
-.form-group {
-  width: 300px;
+.form-control {
+  width: 350px;
+  text-align: center;
+  margin: 0 auto;
 }
