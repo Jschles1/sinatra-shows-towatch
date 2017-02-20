@@ -18,6 +18,9 @@ class UsersController < ApplicationController
     if params[:username] == "" || params[:password] == ""
       flash[:message] = "Not all required fields were given. Please try again."
       redirect to '/signup'
+    elsif User.find_by(:username => params[:username])
+      flash[:message] = "That username has already been registered. Please Try again."
+      redirect to '/signup'
     else
       @user = User.new(:username => params[:username], :password => params[:password])
       @user.save
