@@ -3,7 +3,7 @@ class ShowsController < ApplicationController
   get '/shows' do
     if logged_in?
       @user = User.find_by_id(session[:user_id])
-      @shows = Show.all #Find where current_user.id == show.user_id
+      @shows = Show.all.find {|show| current_user.id == show.user_id }#Find where current_user.id == show.user_id
       erb :'/shows/shows'
     else
       flash[:message] = "You must log in to access this page."
@@ -31,20 +31,20 @@ class ShowsController < ApplicationController
   end
 
   post '/shows' do
-    if params[:name] == "" || params[:network] == "" || params[:showtime] == ""
+    if params[:name] == "" || params[:network] == "" || params[:showtime] == "" || params[:weekday] == ""
       flash[:message] = "You left the content field blank. Please try again."
       redirect to '/shows/new'
     else
-      @show = current_user.shows.create(:name => params[:name], :network => params[:network], :showtime => params[:showtime])
+      @show = current_user.shows.create(:name => params[:name], :network => params[:network], :showtime => params[:showtime], :weekday => params[:weekday])
       @show.save
-      redirect to "/shows/#{@show.id}"
+      redirect to "/shows"
     end
   end
 
   get '/shows/:id/edit' do
     if logged_in?
       @show = Show.find_by_id(params[:id])
-      if @show.user_id = current_user.id
+      if @show.user_id == current_user.id
         erb :'/shows/edit_show'
       else
         flash[:message] = "You don't have permission to perform this action."
@@ -58,11 +58,11 @@ class ShowsController < ApplicationController
 
   patch '/shows/:id' do
     @show = Show.find_by_id(params[:id])
-    if params[:name] == "" || params[:network] == "" || params[:showtime] == ""
+    if params[:name] == "" || params[:network] == "" || params[:showtime] == "" || params[:weekday] == ""
       flash[:message] = "You left the content field blank. Please try again."
       redirect "/shows/#{@show.id}/edit"
     else
-      @show.update(:name => params[:name], :network => params[:network], :showtime => params[:showtime])
+      @show.update(:name => params[:name], :network => params[:network], :showtime => params[:showtime], :weekday => params[:weekday])
       @show.save
       redirect to "/shows/#{@show.id}"
     end
