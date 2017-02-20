@@ -17,13 +17,18 @@ section {
   float: left;
 }
 
-.navbar-right {
-  float: right;
+.navbar-left h3 {
+  margin: 5px 10px 5px 0;
+  color: lime;
 }
 
-.signup-login {
-  /*text-align: left;*/
+
+.navbar-right {
+  float: right;
+  margin: 0 10px 10px 0;
 }
+
+
 
 .form-control {
   width: 350px;
