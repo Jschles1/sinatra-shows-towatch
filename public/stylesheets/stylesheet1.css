@@ -15,3 +15,11 @@ section {
 .navbar-left {
   float: left;
 }
+
+.signup-login {
+  text-align: left;
+}
+
+.form-group {
+  width: 300px;
+}
