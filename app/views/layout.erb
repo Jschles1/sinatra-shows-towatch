@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <title>TV Shows Watchlist</title>
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-
     <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet1.css">
-
   </head>
   <body>
 
@@ -14,8 +12,12 @@
         <section>
           <div class="navbar">
             <div class="navbar-left">
-              <a href="/signup" class="btn btn-default" role="button">Create Account</a>
-              <a href="/login" class="btn btn-default" role="button">Log In</a>
+              <% if logged_in? %>
+                <p>Current User: <%= current_user.username %></p>
+              <% else %>
+                <a href="/signup" class="btn btn-default" role="button">Create Account</a>
+                <a href="/login" class="btn btn-default" role="button">Log In</a>
+              <% end %>
             </div>
           </div>
 
