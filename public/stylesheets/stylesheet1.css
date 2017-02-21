@@ -28,7 +28,19 @@ section {
   margin: 0 10px 10px 0;
 }
 
+/* TABLE */
 
+.table {
+  margin-top: 20px;
+}
+
+.header-row {
+    font-size: 1.5em;
+}
+
+.column-header {
+  text-align: center;
+}
 
 .form-control {
   width: 350px;
