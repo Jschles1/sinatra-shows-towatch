@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
 <h2>Add a Show:</h2>
 <form action="/shows" method="post">
   <div class="form-group">
