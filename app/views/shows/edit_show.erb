@@ -1,0 +1,29 @@
+<h2>Edit Show:</h2>
+<form action="/shows/<%= @show.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <label for="name"><%= @show.name %></label>
+    <input type="text" class="form-control" name="name" placeholder="New Show Name">
+  </div>
+  <div class="form-group">
+    <label for="network"><%= @show.network %></label>
+    <input type="text" class="form-control" name="network" placeholder="New Network">
+  </div>
+  <div class="form-group">
+    <label for="weekday">Weekday</label>
+    <select class="form-control" name="weekday" placeholder="New Weekday">
+      <option>Sunday</option>
+      <option>Monday</option>
+      <option>Tuesday</option>
+      <option>Wednesday</option>
+      <option>Thursday</option>
+      <option>Friday</option>
+      <option>Saturday</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="showtime">Time</label>
+    <input type="time" class="form-control" name="showtime" placeholder="New Time">
+  </div>
+  <button type="submit" class="btn btn-default">Edit Show</button>
+</form>
