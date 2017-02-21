@@ -1,2 +1,21 @@
 <h1>Your Shows:</h1>
 <a href="/shows/new" class="btn btn-default" role="button">Add Show</a>
+
+<table class="table">
+  <tr class="header-row">
+    <th class="column-header">Show Name</th>
+    <th class="column-header">Network</th>
+    <th class="column-header">Weekday</th>
+    <th class="column-header">Time</th>
+    <th class="column-header"></th>
+  </tr>
+  <% @shows.each do |show| %>
+    <tr>
+      <td><%= show.name %></td>
+      <td><%= show.network %></td>
+      <td><%= show.weekday %></td>
+      <td><%= show.showtime %></td>
+      <td><a href="/shows/<%= show.id %>" class="btn btn-default" role="button">More Info:</a></td>
+    </tr>
+  <% end %>
+</table>
