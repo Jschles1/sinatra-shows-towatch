@@ -13,7 +13,7 @@
           <div class="navbar">
             <div class="navbar-left">
               <% if logged_in? %>
-                <p>Current User: <%= current_user.username %></p>
+                <h3>Current User: <%= current_user.username %></h3>
               <% else %>
                 <a href="/signup" class="btn btn-default" role="button">Create Account</a>
                 <a href="/login" class="btn btn-default" role="button">Log In</a>
