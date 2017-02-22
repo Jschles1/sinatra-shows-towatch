@@ -5,6 +5,7 @@ section {
   color: white;
   text-align: center;
   border: 2px solid black;
+  border-radius: 5px;
 }
 
 /* NAVBAR */
@@ -41,6 +42,8 @@ section {
 .column-header {
   text-align: center;
 }
+
+/* FORMS */
 
 .form-control {
   width: 350px;
