@@ -50,3 +50,9 @@ section {
   text-align: center;
   margin: 0 auto;
 }
+
+/* FOOTER */
+
+footer {
+  margin-top: 5px;
+}
