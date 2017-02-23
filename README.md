@@ -23,6 +23,10 @@ Then navigate to the your computer's given local address.
 
 Finally, click on "Create Account" to create a user account and begin using the app.
 
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at [this project's repository]([https://github.com/Jschles1/sinatra-shows-towatch]). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+
 ## License
 
 This Web Application is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
