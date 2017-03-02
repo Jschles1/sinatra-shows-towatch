@@ -2,7 +2,7 @@ class ShowsController < ApplicationController
 
   get '/shows' do
     if logged_in?
-      @user = User.find_by(id: session[:user_id])
+      @user = current_user
       @shows = @user.shows #Show.all.find{|show| current_user.id == show.user_id }#Find where current_user.id == show.user_id or cuurent_user.shows
       erb :'/shows/shows'
     else
