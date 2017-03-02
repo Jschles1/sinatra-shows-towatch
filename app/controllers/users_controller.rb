@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   get '/signup' do
     if !logged_in?
+      @user = User.new
       erb :'users/create_user'
     else
       flash[:message] = "You are already logged in. Redirecting to your list of shows."
@@ -10,18 +11,15 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    if params[:username] == "" || params[:password] == ""
-      flash[:message] = "Not all required fields were given. Please try again."
-      redirect to '/signup'
-    elsif User.find_by(:username => params[:username])
-      flash[:message] = "That username has already been registered. Please Try again."
-      redirect to '/signup'
-    else
-      @user = User.new(:username => params[:username], :password => params[:password])
-      @user.save
+    
+    @user = User.new(:username => params[:username], :password => params[:password])
+    if @user.save
       session[:user_id] = @user.id
       flash[:message] = "Thanks for signing up!"
       redirect to '/shows'
+    else
+      flash[:message] = @user.errors.full_messages.join(", ")
+      erb :'users/create_user'
     end
   end
 
