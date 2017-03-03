@@ -13,6 +13,7 @@ class ShowsController < ApplicationController
 
   get '/shows/new' do
     if logged_in?
+      @show = Show.new
       erb :'/shows/create_show'
     else
       flash[:message] = "You must log in to access this page."
@@ -31,13 +32,12 @@ class ShowsController < ApplicationController
   end
 
   post '/shows' do
-    if params[:name] == "" || params[:network] == "" || params[:showtime] == "" || params[:weekday] == ""
-      flash[:message] = "You left the content field blank. Please try again."
-      redirect to '/shows/new'
-    else
-      @show = current_user.shows.create(:name => params[:name], :network => params[:network], :showtime => params[:showtime], :weekday => params[:weekday])
-      @show.save
+    @show = current_user.shows.create(:name => params[:name], :network => params[:network], :showtime => params[:showtime], :weekday => params[:weekday])
+    if @show.save
       redirect to "/shows"
+    else
+      flash[:message] = @show.errors.full_messages.join(", ")
+      erb :'/shows/create_show'
     end
   end
 
@@ -58,13 +58,12 @@ class ShowsController < ApplicationController
 
   patch '/shows/:id' do
     @show = Show.find_by_id(params[:id])
-    if params[:name] == "" || params[:network] == "" || params[:showtime] == "" || params[:weekday] == ""
-      flash[:message] = "You left the content field blank. Please try again."
-      redirect "/shows/#{@show.id}/edit"
-    else
-      @show.update(:name => params[:name], :network => params[:network], :showtime => params[:showtime], :weekday => params[:weekday])
-      @show.save
+    @show.update(:name => params[:name], :network => params[:network], :showtime => params[:showtime], :weekday => params[:weekday])
+    if @show.save
       redirect to "/shows/#{@show.id}"
+    else
+      flash[:message] = @show.errors.full_messages.join(", ")
+      erb :'/shows/edit_show'
     end
   end
 
