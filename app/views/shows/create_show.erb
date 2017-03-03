@@ -6,11 +6,11 @@
 <form action="/shows" method="post">
   <div class="form-group">
     <label for="name">Show Name</label>
-    <input type="text" class="form-control" name="name" placeholder="Show Name">
+    <input type="text" class="form-control" name="name" placeholder="Show Name" value="<%= @show.name %>">
   </div>
   <div class="form-group">
     <label for="network">Network</label>
-    <input type="text" class="form-control" name="network" placeholder="Network">
+    <input type="text" class="form-control" name="network" placeholder="Network" value="<%= @show.network %>">
   </div>
   <div class="form-group">
     <label for="weekday">Weekday</label>
@@ -26,7 +26,7 @@
   </div>
   <div class="form-group">
     <label for="showtime">Time</label>
-    <input type="time" class="form-control" name="showtime" placeholder="Time">
+    <input type="time" class="form-control" name="showtime" placeholder="Time" value="<%= @show.showtime %>">
   </div>
   <button type="submit" class="btn btn-default">Add Show</button>
 </form>
