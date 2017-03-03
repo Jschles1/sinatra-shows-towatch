@@ -6,12 +6,12 @@
 <form action="/shows/<%= @show.id %>" method="post">
   <input type="hidden" name="_method" value="patch">
   <div class="form-group">
-    <label for="name"><%= @show.name %></label>
-    <input type="text" class="form-control" name="name" placeholder="New Show Name">
+    <label for="name">Show Name</label>
+    <input type="text" class="form-control" name="name" value="<%= @show.name %>">
   </div>
   <div class="form-group">
-    <label for="network"><%= @show.network %></label>
-    <input type="text" class="form-control" name="network" placeholder="New Network">
+    <label for="network">Network</label>
+    <input type="text" class="form-control" name="network" value="<%= @show.network %>">
   </div>
   <div class="form-group">
     <label for="weekday">Weekday</label>
@@ -27,7 +27,7 @@
   </div>
   <div class="form-group">
     <label for="showtime">Time</label>
-    <input type="time" class="form-control" name="showtime" placeholder="New Time">
+    <input type="time" class="form-control" name="showtime" value="<%= @show.showtime %>">
   </div>
   <button type="submit" class="btn btn-default">Edit Show</button>
 </form>
