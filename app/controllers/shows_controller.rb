@@ -32,7 +32,7 @@ class ShowsController < ApplicationController
   end
 
   post '/shows' do
-    @show = current_user.shows.create(:name => params[:name], :network => params[:network], :showtime => params[:showtime], :weekday => params[:weekday])
+    @show = current_user.shows.new(:name => params[:name], :network => params[:network], :showtime => params[:showtime], :weekday => params[:weekday])
     if @show.save
       redirect to "/shows"
     else
