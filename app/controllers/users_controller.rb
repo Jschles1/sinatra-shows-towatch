@@ -25,7 +25,6 @@ class UsersController < ApplicationController
 
   get '/login' do
     if !logged_in?
-      @user = User.new
       erb :'users/login'
     else
       flash[:message] = "You are already logged in. Redirecting to your list of shows."
