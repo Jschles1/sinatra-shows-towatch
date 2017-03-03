@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    
+
     @user = User.new(:username => params[:username], :password => params[:password])
     if @user.save
       session[:user_id] = @user.id
@@ -25,6 +25,7 @@ class UsersController < ApplicationController
 
   get '/login' do
     if !logged_in?
+      @user = User.new
       erb :'users/login'
     else
       flash[:message] = "You are already logged in. Redirecting to your list of shows."
@@ -34,16 +35,13 @@ class UsersController < ApplicationController
 
   post '/login' do
     @user = User.find_by(:username => params[:username])
-    if params[:username] == "" || params[:password] == ""
-      flash[:message] = "Either the username and/or the password wasn't provided. Please try again."
-      redirect to '/login'
-    elsif @user && @user.authenticate(params[:password])
+    if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       flash[:message] = "Welcome, #{@user.username}."
       redirect to '/shows'
     else
-      flash[:message] = "Log in failed. Please try again."
-      redirect to '/login'
+      flash[:message] = "Log in failed. Please try again." # @user.errors.full_messages.join(", ")
+      erb :'users/login'
     end
   end
 
