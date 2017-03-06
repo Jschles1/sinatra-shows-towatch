@@ -7,7 +7,7 @@ class ShowsController < ApplicationController
       erb :'/shows/shows'
     else
       flash[:message] = "You must log in to access this page."
-      redirect to '/login'
+      erb :'users/login'
     end
   end
 
@@ -17,7 +17,7 @@ class ShowsController < ApplicationController
       erb :'/shows/create_show'
     else
       flash[:message] = "You must log in to access this page."
-      redirect to '/login'
+      erb :'users/login'
     end
   end
 
@@ -27,7 +27,7 @@ class ShowsController < ApplicationController
       erb :'/shows/display_show'
     else
       flash[:message] = "You must log in to access this page."
-      redirect to '/login'
+      erb :'users/login'
     end
   end
 
@@ -52,7 +52,7 @@ class ShowsController < ApplicationController
       end
     else
       flash[:message] = "You must log in to access this page."
-      redirect to '/login'
+      erb :'users/login'
     end
   end
 
@@ -80,7 +80,7 @@ class ShowsController < ApplicationController
       end
     else
       flash[:message] = "You are currently not logged in."
-      redirect '/login'
+      erb :'users/login'
     end
   end
 
