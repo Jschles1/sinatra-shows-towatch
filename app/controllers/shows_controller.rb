@@ -58,8 +58,7 @@ class ShowsController < ApplicationController
 
   patch '/shows/:id' do
     @show = Show.find_by_id(params[:id])
-    @show.update(:name => params[:name], :network => params[:network], :showtime => params[:showtime], :weekday => params[:weekday])
-    if @show.save
+    if @show.update(:name => params[:name], :network => params[:network], :showtime => params[:showtime], :weekday => params[:weekday])
       redirect to "/shows/#{@show.id}"
     else
       flash[:message] = @show.errors.full_messages.join(", ")
