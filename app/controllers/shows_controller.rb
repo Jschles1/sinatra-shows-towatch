@@ -31,7 +31,7 @@ class ShowsController < ApplicationController
   end
 
   post '/shows' do
-    @show = current_user.shows.new(:name => params[:name], :network => params[:network], :showtime => params[:showtime], :weekday => params[:weekday])
+    @show = current_user.shows.build(:name => params[:name], :network => params[:network], :showtime => params[:showtime], :weekday => params[:weekday])
     if @show.save
       redirect to "/shows"
     else
@@ -43,7 +43,7 @@ class ShowsController < ApplicationController
   get '/shows/:id/edit' do
     if logged_in?
       @show = Show.find_by_id(params[:id])
-      if @show.user_id == current_user.id
+      if @show.user == current_user
         erb :'/shows/edit_show'
       else
         flash[:message] = "You don't have permission to perform this action."
@@ -68,7 +68,7 @@ class ShowsController < ApplicationController
   delete '/shows/:id/delete' do
     if logged_in?
       @show = Show.find_by_id(params[:id])
-      if @show.user_id == current_user.id
+      if @show.user == current_user
         @show.delete
         flash[:message] = "Show deleted."
         redirect '/shows'

@@ -14,4 +14,9 @@ gem 'tux'
 
 group :development do
   gem 'pry'
+  gem 'rspec'
+  gem 'capybara'
+  gem 'rack-test'
+  gem 'factory_girl'
+  gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
 end
