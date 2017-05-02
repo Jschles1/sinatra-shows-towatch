@@ -26,6 +26,20 @@ describe User do
     expect(user2).to_not be_valid
   end
 
+  describe 'associations' do
+    before(:each) do
+      @user = create(:user)
+      @show = create(:show)
+      @show2 = create(:show)
+      @user.shows << @show
+      @user.shows << @show2
+    end
+
+    it 'has many shows' do
+      expect(@user.shows.size).to eq(2)
+    end
+  end
+
 
 
 end
