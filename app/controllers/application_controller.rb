@@ -10,6 +10,7 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "shows secret"
   end
 
+  # Welcome page
   get '/' do
     erb :index
   end
@@ -20,6 +21,8 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
+      # If @current_user isn't already set, find user in db with same id as current session id and set it 
+      # to @current_user
       @current_user ||= User.find_by(id: session[:user_id])
     end
   end

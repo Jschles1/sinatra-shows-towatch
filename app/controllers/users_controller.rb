@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+  # User Signup
   get '/signup' do
     if !logged_in?
       @user = User.new
@@ -10,8 +11,8 @@ class UsersController < ApplicationController
     end
   end
 
+  # Submisstion of User Signup form
   post '/signup' do
-
     @user = User.new(:username => params[:username], :password => params[:password])
     if @user.save
       session[:user_id] = @user.id
@@ -23,6 +24,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # User Login
   get '/login' do
     if !logged_in?
       erb :'users/login'
@@ -32,8 +34,11 @@ class UsersController < ApplicationController
     end
   end
 
+  # Submission of Login form
   post '/login' do
+    # Find user in database
     @user = User.find_by(:username => params[:username])
+    # Authenticate user password with bcrypt
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       flash[:message] = "Welcome, #{@user.username}."
@@ -44,6 +49,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # User Logout
   get '/logout' do
     session.clear
     erb :'users/login'
